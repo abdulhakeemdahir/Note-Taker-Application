@@ -1,4 +1,6 @@
 var express = require("express");
+var path = require("path");
+const fs = require("fs");
 
 // Tells node that we are creating an "express" server
 var app = express();
@@ -11,7 +13,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-app.post("/api/tables", function (req, res) {
+app.get("/api/notes", function (req, res) {
+  const newReservation = req.body;
+  console.log(req.body);
+  database.push(newReservation);
+
+  res.json(newReservation);
+});
+
+app.post("/api/notes", function (req, res) {
   const newReservation = req.body;
   console.log(req.body);
   database.push(newReservation);
