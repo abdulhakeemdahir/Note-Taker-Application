@@ -2,6 +2,7 @@ var express = require("express");
 var path = require("path");
 const fs = require("fs");
 const { json } = require("express");
+const dataDB = require("./db/db.json");
 
 // Tells node that we are creating an "express" server
 var app = express();
@@ -22,11 +23,11 @@ app.get("/api/notes", function (req, res, dataPath) {
 });
 
 app.post("/api/notes", function (req, res) {
-  const newPost = req.body;
+  const newReq = req.body;
   console.log(req.body);
-  database.push(newReservation);
-
-  res.json(newReservation);
+  const newNote = JSON.stringify(newReq);
+  dataDB.push(newNote);
+  res.json(newNote);
 });
 
 app.get("/notes", function (req, res) {
