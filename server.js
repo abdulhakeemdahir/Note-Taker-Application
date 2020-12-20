@@ -1,6 +1,8 @@
 var express = require("express");
 var path = require("path");
 const fs = require("fs");
+const { json } = require("express");
+const data = require(__dirname, "./db/db.json");
 
 // Tells node that we are creating an "express" server
 var app = express();
@@ -14,20 +16,17 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.get("/api/notes", function (req, res) {
-  const newReservation = req.body;
-  console.log(req.body);
-  database.push(newReservation);
-
-  res.json(newReservation);
+  res.header("Content-Type", "application/json");
+  res.sendFile(path.join(__dirname, "/db/db.json"));
 });
 
-app.post("/api/notes", function (req, res) {
-  const newReservation = req.body;
-  console.log(req.body);
-  database.push(newReservation);
+// app.post("/api/notes", function (req, res) {
+//   const newReservation = req.body;
+//   console.log(req.body);
+//   database.push(newReservation);
 
-  res.json(newReservation);
-});
+//   res.json(newReservation);
+// });
 
 app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "public/notes.html"));
