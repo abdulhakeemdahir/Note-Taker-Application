@@ -21,13 +21,13 @@ app.get("/api/notes", function (req, res, dataPath) {
   return res.json(dataParse);
 });
 
-// // app.post("/api/notes", function (req, res) {
-// //   const newReservation = req.body;
-// //   console.log(req.body);
-// //   database.push(newReservation);
+app.post("/api/notes", function (req, res) {
+  const newPost = req.body;
+  console.log(req.body);
+  database.push(newReservation);
 
-// //   res.json(newReservation);
-// // });
+  res.json(newReservation);
+});
 
 app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "public/notes.html"));
