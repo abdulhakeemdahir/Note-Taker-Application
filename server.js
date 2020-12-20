@@ -26,8 +26,10 @@ app.post("/api/notes", function (req, res) {
   const newReq = req.body;
   console.log(req.body);
   const newNote = JSON.stringify(newReq);
+  console.log(newNote);
   dataDB.push(newNote);
-  res.json(newNote);
+  return res.json(dataDB);
+  // return fs.writeFileSync("./db/db.json", writeNote);
 });
 
 app.get("/notes", function (req, res) {
