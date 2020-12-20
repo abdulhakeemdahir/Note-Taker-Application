@@ -18,27 +18,23 @@ app.use(express.static("public"));
 app.get("/api/notes", function (req, res, dataPath) {
   let readData = fs.readFileSync("./db/db.json", "utf8");
   let dataParse = JSON.parse(readData);
-  console.log(dataParse);
   return res.json(dataParse);
 });
 
 app.post("/api/notes", function (req, res) {
-  const newNote = req.body;
-  console.log("process ended");
+  let newNote = req.body;
+  newNote.id = Math.random(100);
+  console.log(newNote);
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
     let notes = JSON.parse(data);
     notes.push(newNote);
-    console.log(notes);
-
     let updatedNotes = JSON.stringify(notes);
-    console.log(updatedNotes);
 
     fs.writeFile("./db/db.json", updatedNotes, (err) => {
       if (err) throw err;
       else {
         return res.json(updatedNotes);
-        console.log("Note added");
       }
     });
   });
