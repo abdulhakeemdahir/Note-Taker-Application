@@ -2,7 +2,7 @@ var express = require("express");
 var path = require("path");
 const fs = require("fs");
 const { json } = require("express");
-const dataDB = require("./db/db.json");
+let dataDB = require("./db/db.json");
 
 // Tells node that we are creating an "express" server
 var app = express();
@@ -16,20 +16,34 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.get("/api/notes", function (req, res, dataPath) {
-  const readData = fs.readFileSync("./db/db.json", "utf8");
+  let readData = fs.readFileSync("./db/db.json", "utf8");
   let dataParse = JSON.parse(readData);
   console.log(dataParse);
   return res.json(dataParse);
 });
 
 app.post("/api/notes", function (req, res) {
-  const newReq = req.body;
-  console.log(req.body);
-  const newNote = JSON.stringify(newReq);
-  console.log(newNote);
-  dataDB.push(newNote);
-  return res.json(dataDB);
-  // return fs.writeFileSync("./db/db.json", writeNote);
+  const newNote = req.body;
+  // console.log(newNote);
+  // const readData = fs.readFileSync("./db/db.json", "utf8");
+  // console.log(readData);
+  console.log("process ended");
+  fs.readFile("./db/db.json", (err, data) => {
+    if (err) throw err;
+    let notes = JSON.parse(data);
+    notes.push(newNote);
+    console.log(notes);
+
+    let updatedNotes = JSON.stringify(notes);
+    console.log(updatedNotes);
+
+    fs.writeFile("./db/db.json", updatedNotes, (err) => {
+      if (err) throw err;
+      else {
+        console.log("Note added");
+      }
+    });
+  });
 });
 
 app.get("/notes", function (req, res) {
