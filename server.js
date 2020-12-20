@@ -24,9 +24,6 @@ app.get("/api/notes", function (req, res, dataPath) {
 
 app.post("/api/notes", function (req, res) {
   const newNote = req.body;
-  // console.log(newNote);
-  // const readData = fs.readFileSync("./db/db.json", "utf8");
-  // console.log(readData);
   console.log("process ended");
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
@@ -40,6 +37,7 @@ app.post("/api/notes", function (req, res) {
     fs.writeFile("./db/db.json", updatedNotes, (err) => {
       if (err) throw err;
       else {
+        return res.json(updatedNotes);
         console.log("Note added");
       }
     });
