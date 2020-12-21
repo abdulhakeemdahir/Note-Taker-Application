@@ -42,7 +42,22 @@ app.post("/api/notes", function (req, res) {
 app.delete("/api/notes/:id", function (req, res) {
   // Access :ID from req.params.id
 
-  // Use the fs module to read the file
+  let noteId = req.params.id;
+  console.log(noteId);
+  // // Use the fs module to read the file
+  // fs.readFile("./db/db.json", (err, data) => {
+  //   if (err) throw err;
+  //   let notes = JSON.parse(data);
+  //   notes.push(newNote);
+  //   let updatedNotes = JSON.stringify(notes);
+
+  //   fs.writeFile("./db/db.json", updatedNotes, (err) => {
+  //     if (err) throw err;
+  //     else {
+  //       return res.json(updatedNotes);
+  //     }
+  //   });
+  // });
 
   // Then use parse the file contents
 });
