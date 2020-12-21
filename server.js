@@ -24,7 +24,6 @@ app.get("/api/notes", function (req, res, dataPath) {
 app.post("/api/notes", function (req, res) {
   let newNote = req.body;
   newNote.id = Math.random(100);
-  console.log(newNote);
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
     let notes = JSON.parse(data);
@@ -38,6 +37,14 @@ app.post("/api/notes", function (req, res) {
       }
     });
   });
+});
+
+app.delete("/api/notes/:id", function (req, res) {
+  // Access :ID from req.params.id
+
+  // Use the fs module to read the file
+
+  // Then use parse the file contents
 });
 
 app.get("/notes", function (req, res) {
