@@ -15,7 +15,7 @@ UW Bootcamp HW 11
 
 ## Developer Comment
 
-Hello everyone, and welcome back to my Repo! My name is Abdulhakeem Dahir and I am an aspiring Software Developer. This week I have been tasked to make a Note Taker Application. This application requires us to use Express and correctly route pages and our db.json. It will need to get, post, and delete. Any feedback is welcome! Thank you!
+Hello everyone, and welcome back to my Repo! My name is Abdulhakeem Dahir and I am an aspiring Software Developer. This week I have been tasked to make a Note Taker Application. This application requires us to use Node, Express and Heroku. We have to correctly route pages and use post data to modify our db.json. It will need to have GET, POST, and DELETE functionality. Any feedback is welcome! Thank you!
 
 ## Employer Request
 
@@ -45,7 +45,7 @@ Application should allow users to delete previously saved notes.
 
 The follwing are all of the feautres and highlights of my portfolio:
 
-### NODE, Express & Heroku
+### Node, Express & Heroku
 
 ```
 - Created express routes
