@@ -3,6 +3,7 @@ var path = require("path");
 const fs = require("fs");
 const { json } = require("express");
 let dataDB = require("./db/db.json");
+const { nanoid } = require("nanoid");
 
 // Tells node that we are creating an "express" server
 var app = express();
@@ -23,7 +24,7 @@ app.get("/api/notes", function (req, res, dataPath) {
 
 app.post("/api/notes", function (req, res) {
   let newNote = req.body;
-  newNote.id = Math.random(100);
+  newNote.id = nanoid();
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
     let notes = JSON.parse(data);
