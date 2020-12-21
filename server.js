@@ -30,7 +30,7 @@ app.post("/api/notes", function (req, res) {
     notes.push(newNote);
     let updatedNotes = JSON.stringify(notes);
 
-    fs.writeFile("./db/db.json", updatedNotes, (err) => {
+    fs.writeFile("./db/db.json", updatedNotes, err => {
       if (err) throw err;
       else {
         return res.json(updatedNotes);
@@ -44,20 +44,22 @@ app.delete("/api/notes/:id", function (req, res) {
 
   let noteId = req.params.id;
   console.log(noteId);
-  // // Use the fs module to read the file
-  // fs.readFile("./db/db.json", (err, data) => {
-  //   if (err) throw err;
-  //   let notes = JSON.parse(data);
-  //   notes.push(newNote);
-  //   let updatedNotes = JSON.stringify(notes);
+  // Use the fs module to read the file
+  fs.readFile("./db/db.json", (err, data) => {
+    if (err) throw err;
+    let notes = JSON.parse(data);
+    console.log(notes[0].id);
+    newNote = notes.filter(id => notes.id !== noteId);
+    console.log(newNote);
+    let updatedNotes = JSON.stringify(newNote);
 
-  //   fs.writeFile("./db/db.json", updatedNotes, (err) => {
-  //     if (err) throw err;
-  //     else {
-  //       return res.json(updatedNotes);
-  //     }
-  //   });
-  // });
+    //   // fs.writeFile("./db/db.json", updatedNotes, (err) => {
+    //   //   if (err) throw err;
+    //   //   else {
+    //   //     return res.json(updatedNotes);
+    //   //   }
+    //   // });
+  });
 
   // Then use parse the file contents
 });
