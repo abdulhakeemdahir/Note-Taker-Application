@@ -43,22 +43,20 @@ app.delete("/api/notes/:id", function (req, res) {
   // Access :ID from req.params.id
 
   let noteId = req.params.id;
-  console.log(noteId);
   // Use the fs module to read the file
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
     let notes = JSON.parse(data);
-    console.log(notes[0].id);
-    newNote = notes.filter(id => notes.id !== noteId);
+    let newNote = notes.filter(note => note.id !== noteId);
     console.log(newNote);
     let updatedNotes = JSON.stringify(newNote);
 
-    //   // fs.writeFile("./db/db.json", updatedNotes, (err) => {
-    //   //   if (err) throw err;
-    //   //   else {
-    //   //     return res.json(updatedNotes);
-    //   //   }
-    //   // });
+    fs.writeFile("./db/db.json", updatedNotes, err => {
+      if (err) throw err;
+      else {
+        return res.json(updatedNotes);
+      }
+    });
   });
 
   // Then use parse the file contents
