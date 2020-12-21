@@ -46,16 +46,13 @@ app.post("/api/notes", function (req, res) {
 app.delete("/api/notes/:id", function (req, res) {
   // Access :ID from req.params.id
   let noteId = req.params.id;
-  console.log("NOTE ID: ", noteId);
   // Use the fs module to read the file
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
     // Then use parse the file contents
     let notes = JSON.parse(data);
-    console.log("NOTES JSON: ", notes);
     // Use filter to remove the selected item
     let newNote = notes.filter(notes => notes.id !== noteId);
-    console.log("NEW NOTE: ", newNote);
     let updatedNotes = JSON.stringify(newNote);
     // Write the new array into the db.json
     fs.writeFile("./db/db.json", updatedNotes, err => {
