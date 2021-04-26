@@ -1,7 +1,5 @@
 # Note-Taker-Application
 
-UW Bootcamp HW 11
-
 ## Table of Contents
 
 - [Developer Comment](#developer-comment)
